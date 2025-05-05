@@ -1,6 +1,10 @@
+
+CREATE DATABASE [PAYMENTS_DB]
+GO
+
 USE [PAYMENTS_DB]
 GO
-/****** Object:  Table [dbo].[Usuario]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Table [dbo].[Usuario]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22,7 +26,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Actividad]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Table [dbo].[Actividad]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -41,7 +45,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[Vista_Actividades_Por_Usuario]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  View [dbo].[Vista_Actividades_Por_Usuario]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -66,7 +70,7 @@ FROM
 JOIN 
     Actividad A ON U.ID_Usuario = A.ID_Usuario;
 GO
-/****** Object:  View [dbo].[Vista_Actividades_Pendientes]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  View [dbo].[Vista_Actividades_Pendientes]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -90,7 +94,7 @@ JOIN
 WHERE 
     A.Estado IN ('Programada', 'Progreso');
 GO
-/****** Object:  Table [dbo].[Solicitud_Tiempo_Libre]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Table [dbo].[Solicitud_Tiempo_Libre]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +112,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[Vista_Solicitudes_Tiempo_Libre]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  View [dbo].[Vista_Solicitudes_Tiempo_Libre]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -129,7 +133,7 @@ FROM
 JOIN 
     Usuario U ON S.ID_Usuario = U.ID_Usuario;
 GO
-/****** Object:  View [dbo].[Vista_Actividades_Completadas]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  View [dbo].[Vista_Actividades_Completadas]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -152,7 +156,7 @@ JOIN
 WHERE 
     A.Estado = 'Completada';
 GO
-/****** Object:  Table [dbo].[Area]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Table [dbo].[Area]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -169,7 +173,7 @@ CREATE TABLE [dbo].[Area](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[Vista_Actividades_Por_Area]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  View [dbo].[Vista_Actividades_Por_Area]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -193,7 +197,7 @@ JOIN
 JOIN 
     Area Ar ON U.ID_Area = Ar.ID_Area;
 GO
-/****** Object:  Table [dbo].[Documento]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Table [dbo].[Documento]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -212,7 +216,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Empresa]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Table [dbo].[Empresa]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -229,7 +233,7 @@ CREATE TABLE [dbo].[Empresa](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Etapa_Flujo]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Table [dbo].[Etapa_Flujo]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -246,7 +250,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Flujo_Trabajo]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Table [dbo].[Flujo_Trabajo]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -263,7 +267,45 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Rol]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Table [dbo].[items_proyecto]    Script Date: 5/05/2025 09:54:56 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[items_proyecto](
+	[ID_ITEMS] [int] IDENTITY(1,1) NOT NULL,
+	[ID_PROYECTO] [int] NOT NULL,
+	[descripcion] [varchar](max) NOT NULL,
+	[estado] [varchar](20) NOT NULL,
+	[fecha_creacion] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID_ITEMS] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Proyecto]    Script Date: 5/05/2025 09:54:56 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Proyecto](
+	[ID_PROYECTO] [int] IDENTITY(1,1) NOT NULL,
+	[titulo] [varchar](100) NOT NULL,
+	[descripcion] [varchar](max) NULL,
+	[fecha_limite] [date] NOT NULL,
+	[estado] [varchar](20) NOT NULL,
+	[ID_Usuario] [int] NOT NULL,
+	[progreso] [int] NULL,
+	[fecha_creacion] [datetime] NULL,
+	[fecha_actualizacion] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID_PROYECTO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Rol]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -279,7 +321,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Rol_Usuario]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Table [dbo].[Rol_Usuario]    Script Date: 5/05/2025 09:54:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -296,15 +338,13 @@ PRIMARY KEY CLUSTERED
 GO
 SET IDENTITY_INSERT [dbo].[Actividad] ON 
 GO
-INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (1, 1, N'Revisión de Requerimientos ', N'Revisión y validación de los requerimientos del sistema.', CAST(N'2023-03-01' AS Date), CAST(N'2023-03-05' AS Date), N'Pendiente')
+INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (1, 1, N'Revisión de Requerimientos ', N'Revisión y validación de los requerimientos del sistema.', CAST(N'2023-03-01' AS Date), CAST(N'2025-05-05' AS Date), N'En progreso')
 GO
 INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (2, 2, N'Análisis de Datos', N'Análisis de los datos recolectados para la implementación de la solución.', CAST(N'2023-03-06' AS Date), CAST(N'2023-03-10' AS Date), N'En progreso')
 GO
 INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (3, 3, N'Diseño de la Base de Datos', N'Crear el esquema de base de datos para el sistema.', CAST(N'2023-03-02' AS Date), CAST(N'2023-03-08' AS Date), N'Completado')
 GO
-INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (4, 4, N'Desarrollo de Interfaces', N'Desarrollo de las interfaces gráficas del sistema de gestión.', CAST(N'2023-03-11' AS Date), CAST(N'2023-03-15' AS Date), N'Cancelado')
-GO
-INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (5, 5, N'Pruebas del Sistema', N'Realizar pruebas del sistema para verificar su correcto funcionamiento.', CAST(N'2023-03-12' AS Date), CAST(N'2023-03-16' AS Date), N'Pendiente')
+INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (4, 4, N'Prueba 1', N'Prueba 1 Jesus', CAST(N'2025-04-30' AS Date), CAST(N'2025-04-30' AS Date), N'Completado')
 GO
 INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (6, 1, N'Documentación Técnica', N'	Elaborar la documentación técnica del sistema desarrollado.', CAST(N'2023-03-01' AS Date), CAST(N'2023-03-05' AS Date), N'En progreso')
 GO
@@ -315,6 +355,22 @@ GO
 INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (9, 4, N'Monitoreo Post-Implementación', N'Realizar seguimiento al sistema en producción para detectar posibles fallos.', CAST(N'2023-03-11' AS Date), CAST(N'2023-03-15' AS Date), N'Cancelado')
 GO
 INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (10, 5, N'Mantenimiento del Sistema', N'Realizar tareas de mantenimiento preventivo y correctivo del sistema.', CAST(N'2023-03-12' AS Date), CAST(N'2023-03-16' AS Date), N'Cancelado')
+GO
+INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (11, 23, N'Compra de cacao', N'Compra y venta', CAST(N'2025-04-30' AS Date), CAST(N'2025-05-05' AS Date), N'Pendiente')
+GO
+INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (12, 22, N'Cambio 1MK', N'Tipo de cambio preferencial', CAST(N'2025-04-30' AS Date), CAST(N'2025-05-05' AS Date), N'Pendiente')
+GO
+INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (13, 21, N'PAGO PRESTAMO MAGOCASH', N'PAGOS VARIOS', CAST(N'2025-04-30' AS Date), CAST(N'2025-05-05' AS Date), N'Pendiente')
+GO
+INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (14, 1, N'Revisión de Requerimientos ', N'Revisión y validación de los requerimientos del sistema.', CAST(N'2025-04-30' AS Date), CAST(N'2025-04-30' AS Date), N'Pendiente')
+GO
+INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (15, 21, N'PAGO PRESTAMO MAGOCASH', N'PAGOS VARIOS', CAST(N'2025-04-30' AS Date), CAST(N'2025-05-05' AS Date), N'En progreso')
+GO
+INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (23, 21, N'PAGO PRESTAMO MAGOCASH Jesus', N'PAGO PRESTAMO MAGOCASH Jesus', CAST(N'2025-04-30' AS Date), CAST(N'2025-05-10' AS Date), N'En progreso')
+GO
+INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (24, 22, N'Pago a Fabian', N'el otro año ', CAST(N'2025-04-30' AS Date), CAST(N'2025-05-05' AS Date), N'Completado')
+GO
+INSERT [dbo].[Actividad] ([ID_Actividad], [ID_Usuario], [Titulo], [Descripcion], [Fecha_Inicio], [Fecha_Fin], [Estado]) VALUES (26, 22, N'Analisis de prueba', N'Debera realizar un análisis del sistema.', CAST(N'2025-04-30' AS Date), CAST(N'2025-04-30' AS Date), N'Pendiente')
 GO
 SET IDENTITY_INSERT [dbo].[Actividad] OFF
 GO
@@ -349,6 +405,64 @@ GO
 INSERT [dbo].[Empresa] ([ID_Empresa], [Nombre], [RUC], [Descripcion], [Estado]) VALUES (2, N'Inkacao del Peru S.a.C.', N'20557532880', N'Somos una empresa agrícola peruana especializada en cacao', 1)
 GO
 INSERT [dbo].[Empresa] ([ID_Empresa], [Nombre], [RUC], [Descripcion], [Estado]) VALUES (3, N'Kambista S.a.C.', N'20601708141', N'Divisa', 1)
+GO
+SET IDENTITY_INSERT [dbo].[items_proyecto] ON 
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (1, 1, N'Inicio', N'No Iniciado', CAST(N'2025-05-02T10:11:54.103' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (2, 1, N'Planificación', N'No Iniciado', CAST(N'2025-05-02T10:11:54.103' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (3, 1, N'Ejecución', N'No Iniciado', CAST(N'2025-05-02T10:11:54.103' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (4, 1, N'Monitoreo y Control', N'No Iniciado', CAST(N'2025-05-02T10:11:54.103' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (5, 1, N'Cierre', N'No Iniciado', CAST(N'2025-05-02T10:11:54.103' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (6, 2, N'Requerimientos', N'No Iniciado', CAST(N'2025-05-02T11:55:50.483' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (7, 2, N'Desarrollo', N'No Iniciado', CAST(N'2025-05-02T11:55:50.483' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (8, 2, N'Pruebas', N'No Iniciado', CAST(N'2025-05-02T11:55:50.483' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (9, 3, N'Evaluación de Requerimientos', N'No Iniciado', CAST(N'2025-05-02T11:56:01.977' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (10, 3, N'Selección de Plataforma', N'No Iniciado', CAST(N'2025-05-02T11:56:01.977' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (11, 3, N'Migración de Datos', N'No Iniciado', CAST(N'2025-05-02T11:56:01.977' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (12, 3, N'Pruebas y Validación', N'No Iniciado', CAST(N'2025-05-02T11:56:01.977' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (13, 4, N'Análisis de Procesos', N'No Iniciado', CAST(N'2025-05-02T12:35:28.893' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (14, 4, N'Diseño de Solución RPA', N'No Iniciado', CAST(N'2025-05-02T12:35:28.893' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (15, 4, N'Implementación de Bots', N'No Iniciado', CAST(N'2025-05-02T12:35:28.893' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (16, 4, N'Pruebas y Optimización', N'No Iniciado', CAST(N'2025-05-02T12:35:28.893' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (17, 5, N'Investigación de Mercado', N'No Iniciado', CAST(N'2025-05-02T12:35:38.353' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (18, 5, N'Desarrollo de Plataforma', N'No Iniciado', CAST(N'2025-05-02T12:35:38.353' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (19, 5, N'Integración de Pagos', N'No Iniciado', CAST(N'2025-05-02T12:35:38.353' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (20, 5, N'Pruebas y Lanzamiento', N'No Iniciado', CAST(N'2025-05-02T12:35:38.353' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[items_proyecto] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Proyecto] ON 
+GO
+INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (1, N'Implementación de Sistema de Gestión', N'Proyecto para implementar un sistema integral de gestión empresarial.', CAST(N'2025-09-30' AS Date), N'No Iniciado', 1, 0, CAST(N'2025-05-02T10:09:24.420' AS DateTime), CAST(N'2025-05-02T10:09:24.420' AS DateTime))
+GO
+INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (2, N'Desarrollo de Aplicación Web', N'Proyecto para desarrollar una aplicación web para la gestión de clientes.', CAST(N'2025-10-15' AS Date), N'No Iniciado', 2, 0, CAST(N'2025-05-02T11:55:50.480' AS DateTime), CAST(N'2025-05-02T11:55:50.480' AS DateTime))
+GO
+INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (3, N'Migración a la Nube', N'Proyecto para migrar los sistemas existentes a la nube.', CAST(N'2025-12-20' AS Date), N'No Iniciado', 3, 0, CAST(N'2025-05-02T11:56:01.973' AS DateTime), CAST(N'2025-05-02T11:56:01.973' AS DateTime))
+GO
+INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (4, N'Automatización de Procesos Empresariales', N'Proyecto para automatizar los procesos internos de la empresa utilizando RPA (Robotic Process Automation).', CAST(N'2025-11-15' AS Date), N'No Iniciado', 4, 0, CAST(N'2025-05-02T12:35:22.150' AS DateTime), CAST(N'2025-05-02T12:35:22.150' AS DateTime))
+GO
+INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (5, N'Desarrollo de Plataforma de E-commerce', N'Proyecto para crear una plataforma de comercio electrónico para ventas de productos en línea.', CAST(N'2026-01-10' AS Date), N'No Iniciado', 5, 0, CAST(N'2025-05-02T12:35:32.740' AS DateTime), CAST(N'2025-05-02T12:35:32.740' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Proyecto] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Rol] ON 
 GO
@@ -426,7 +540,7 @@ SET IDENTITY_INSERT [dbo].[Usuario] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UQ__Empresa__CAF3326B3160D2C2]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  Index [UQ__Empresa__CAF3326B3160D2C2]    Script Date: 5/05/2025 09:54:57 ******/
 ALTER TABLE [dbo].[Empresa] ADD  CONSTRAINT [UQ__Empresa__CAF3326B3160D2C2] UNIQUE NONCLUSTERED 
 (
 	[RUC] ASC
@@ -435,6 +549,18 @@ GO
 ALTER TABLE [dbo].[Documento] ADD  DEFAULT (getdate()) FOR [Fecha_Creacion]
 GO
 ALTER TABLE [dbo].[Documento] ADD  DEFAULT (getdate()) FOR [Fecha_Ultima_Modificacion]
+GO
+ALTER TABLE [dbo].[items_proyecto] ADD  DEFAULT ('No Iniciado') FOR [estado]
+GO
+ALTER TABLE [dbo].[items_proyecto] ADD  DEFAULT (getdate()) FOR [fecha_creacion]
+GO
+ALTER TABLE [dbo].[Proyecto] ADD  DEFAULT ('No Iniciado') FOR [estado]
+GO
+ALTER TABLE [dbo].[Proyecto] ADD  DEFAULT ((0)) FOR [progreso]
+GO
+ALTER TABLE [dbo].[Proyecto] ADD  DEFAULT (getdate()) FOR [fecha_creacion]
+GO
+ALTER TABLE [dbo].[Proyecto] ADD  DEFAULT (getdate()) FOR [fecha_actualizacion]
 GO
 ALTER TABLE [dbo].[Actividad]  WITH CHECK ADD FOREIGN KEY([ID_Usuario])
 REFERENCES [dbo].[Usuario] ([ID_Usuario])
@@ -449,6 +575,17 @@ REFERENCES [dbo].[Usuario] ([ID_Usuario])
 GO
 ALTER TABLE [dbo].[Etapa_Flujo]  WITH CHECK ADD FOREIGN KEY([ID_Flujo])
 REFERENCES [dbo].[Flujo_Trabajo] ([ID_Flujo])
+GO
+ALTER TABLE [dbo].[items_proyecto]  WITH CHECK ADD  CONSTRAINT [FK_items_proyecto_Proyecto] FOREIGN KEY([ID_PROYECTO])
+REFERENCES [dbo].[Proyecto] ([ID_PROYECTO])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[items_proyecto] CHECK CONSTRAINT [FK_items_proyecto_Proyecto]
+GO
+ALTER TABLE [dbo].[Proyecto]  WITH CHECK ADD  CONSTRAINT [FK_Proyecto_Usuario] FOREIGN KEY([ID_Usuario])
+REFERENCES [dbo].[Usuario] ([ID_Usuario])
+GO
+ALTER TABLE [dbo].[Proyecto] CHECK CONSTRAINT [FK_Proyecto_Usuario]
 GO
 ALTER TABLE [dbo].[Rol_Usuario]  WITH CHECK ADD FOREIGN KEY([ID_Rol])
 REFERENCES [dbo].[Rol] ([ID_Rol])
@@ -468,9 +605,17 @@ ALTER TABLE [dbo].[Actividad]  WITH CHECK ADD  CONSTRAINT [CK_Actividad_Estado] 
 GO
 ALTER TABLE [dbo].[Actividad] CHECK CONSTRAINT [CK_Actividad_Estado]
 GO
+ALTER TABLE [dbo].[items_proyecto]  WITH CHECK ADD  CONSTRAINT [CK_Items_Estado] CHECK  (([estado]='Completado' OR [estado]='En Proceso' OR [estado]='Iniciado' OR [estado]='No Iniciado'))
+GO
+ALTER TABLE [dbo].[items_proyecto] CHECK CONSTRAINT [CK_Items_Estado]
+GO
+ALTER TABLE [dbo].[Proyecto]  WITH CHECK ADD  CONSTRAINT [CK_Proyecto_Estado] CHECK  (([estado]='Cancelado' OR [estado]='Completado' OR [estado]='En Proceso' OR [estado]='Iniciado' OR [estado]='No Iniciado'))
+GO
+ALTER TABLE [dbo].[Proyecto] CHECK CONSTRAINT [CK_Proyecto_Estado]
+GO
 ALTER TABLE [dbo].[Solicitud_Tiempo_Libre]  WITH CHECK ADD CHECK  (([Estado]='Rechazada' OR [Estado]='Aprobada' OR [Estado]='Pendiente'))
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Actividad_Por_ID]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Actividad_Por_ID]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -483,7 +628,7 @@ BEGIN
     WHERE ID_Actividad = @ID_Actividad;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Actividad_Por_Titulo]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Actividad_Por_Titulo]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -497,7 +642,7 @@ BEGIN
     WHERE Titulo LIKE '%' + @Titulo + '%';
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Area_Por_ID]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Area_Por_ID]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -511,7 +656,7 @@ BEGIN
     WHERE ID_Area = @ID_Area;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Area_Por_Nombre]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Area_Por_Nombre]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -525,7 +670,7 @@ BEGIN
     WHERE Nombre LIKE '%' + @Nombre + '%';
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Documento_Por_ID]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Documento_Por_ID]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -538,7 +683,7 @@ BEGIN
     WHERE ID_Documento = @ID_Documento;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Documento_Por_Titulo]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Documento_Por_Titulo]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -552,7 +697,7 @@ BEGIN
     WHERE Titulo LIKE '%' + @Titulo + '%';
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Empresa_Por_ID]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Empresa_Por_ID]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -565,7 +710,7 @@ BEGIN
     WHERE ID_Empresa = @ID_Empresa;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Empresa_Por_Nombre]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Empresa_Por_Nombre]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -579,7 +724,7 @@ BEGIN
     WHERE Nombre LIKE '%' + @Nombre + '%';
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Usuario_Por_ID]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Usuario_Por_ID]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -593,7 +738,7 @@ BEGIN
     WHERE ID_Usuario = @ID_Usuario;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Usuario_Por_Nombre]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Usuario_Por_Nombre]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -607,7 +752,37 @@ BEGIN
     WHERE Nombre LIKE '%' + @Nombre + '%';
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Actividad]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[ListarProyectosConItems]    Script Date: 5/05/2025 09:54:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- Procedimiento para listar proyectos e items_proyecto
+CREATE PROCEDURE [dbo].[ListarProyectosConItems]
+AS
+BEGIN
+    SELECT 
+        p.id_proyecto,
+        p.titulo,
+        p.descripcion AS proyecto_descripcion,
+        p.fecha_limite,
+        p.estado AS proyecto_estado,
+        p.progreso,
+        p.fecha_creacion AS proyecto_fecha_creacion,
+        p.fecha_actualizacion AS proyecto_fecha_actualizacion,
+        i.ID_ITEMS,
+        i.descripcion AS item_descripcion,
+        i.estado AS item_estado,
+        i.fecha_creacion AS item_fecha_creacion
+    FROM 
+        Proyecto p
+    LEFT JOIN 
+        items_proyecto i ON p.id_proyecto = i.ID_PROYECTO
+    ORDER BY 
+        p.id_proyecto, i.ID_ITEMS;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Actividad]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -629,7 +804,7 @@ BEGIN
     WHERE ID_Actividad = @ID_Actividad;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Area]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Area]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -648,7 +823,7 @@ BEGIN
     WHERE ID_Area = @ID_Area;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Documento]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Documento]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -667,7 +842,7 @@ BEGIN
     WHERE ID_Documento = @ID_Documento;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Empresa]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Empresa]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -690,7 +865,34 @@ BEGIN
     WHERE ID_Empresa = @ID_Empresa;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Solicitud_Tiempo_Libre]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Proyecto]    Script Date: 5/05/2025 09:54:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_Actualizar_Proyecto]
+    @id_proyecto INT,
+    @titulo VARCHAR(100),
+    @descripcion VARCHAR(MAX),
+    @fecha_limite DATE,
+    @id_usuario INT,
+    @progreso INT,
+    @estado VARCHAR(20)
+AS
+BEGIN
+    UPDATE Proyecto
+    SET
+        titulo = @titulo,
+        descripcion = @descripcion,
+        fecha_limite = @fecha_limite,
+        id_usuario = @id_usuario,
+        progreso = @progreso,
+        estado = @estado,
+        fecha_actualizacion = GETDATE()
+    WHERE id_proyecto = @id_proyecto;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Solicitud_Tiempo_Libre]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -711,7 +913,7 @@ BEGIN
     WHERE ID_Solicitud = @ID_Solicitud;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Usuario]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Usuario]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -737,7 +939,7 @@ BEGIN
     WHERE ID_Usuario = @ID_Usuario;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Actividad]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Actividad]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -752,7 +954,7 @@ BEGIN
     WHERE ID_Actividad = @ID_Actividad;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Area]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Area]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -767,7 +969,7 @@ BEGIN
     WHERE ID_Area = @ID_Area;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Documento]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Documento]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -782,7 +984,7 @@ BEGIN
     WHERE ID_Documento = @ID_Documento;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Empresa]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Empresa]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -797,7 +999,7 @@ BEGIN
     WHERE ID_Empresa = @ID_Empresa;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Solicitud_Tiempo_Libre]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Solicitud_Tiempo_Libre]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -812,7 +1014,7 @@ BEGIN
     WHERE ID_Solicitud = @ID_Solicitud;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Usuario]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Usuario]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -827,7 +1029,7 @@ BEGIN
     WHERE ID_Usuario = @ID_Usuario;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Actividad]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Actividad]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -847,7 +1049,7 @@ BEGIN
     VALUES (@ID_Usuario, @Titulo, @Descripcion, @Fecha_Inicio, @Fecha_Fin, @Estado);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Area]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Area]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -865,7 +1067,7 @@ BEGIN
     VALUES (@Nombre, @Descripcion, @ID_Empresa, @Estado);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Documento]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Documento]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -883,7 +1085,7 @@ BEGIN
     VALUES (@Titulo, @Descripcion, @Tipo, @Autor);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Empresa]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Empresa]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -900,7 +1102,48 @@ BEGIN
     VALUES (@Nombre, @RUC, @Descripcion, @Estado);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Solicitud_Tiempo_Libre]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_ItemProyecto]    Script Date: 5/05/2025 09:54:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_Insertar_ItemProyecto]
+    @id_proyecto INT,
+    @descripcion VARCHAR(MAX),
+    @estado VARCHAR(20) = 'No Iniciado'
+AS
+BEGIN
+    INSERT INTO items_proyecto (ID_PROYECTO, descripcion, estado)
+    VALUES (@id_proyecto, @descripcion, @estado);
+
+    SELECT SCOPE_IDENTITY() AS id_item;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Proyecto]    Script Date: 5/05/2025 09:54:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- Procedimiento almacenado para agregar un nuevo proyecto
+CREATE PROCEDURE [dbo].[sp_Insertar_Proyecto]
+    @titulo VARCHAR(100),
+    @descripcion VARCHAR(MAX),
+    @fecha_limite DATE,
+    @id_usuario INT,
+    @progreso INT = 0, -- Valor por defecto es 0
+    @estado VARCHAR(20) = 'No Iniciado' -- Valor por defecto es 'No Iniciado'
+AS
+BEGIN
+    -- Insertar un nuevo proyecto en la tabla Proyecto
+    INSERT INTO Proyecto (titulo, descripcion, fecha_limite, id_usuario, progreso, estado)
+    VALUES (@titulo, @descripcion, @fecha_limite, @id_usuario, @progreso, @estado);
+
+    -- Puedes devolver el ID del proyecto recién insertado si es necesario
+    SELECT SCOPE_IDENTITY() AS id_proyecto;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Solicitud_Tiempo_Libre]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -919,7 +1162,7 @@ BEGIN
     VALUES (@ID_Usuario, @Tipo_Tiempo_Libre, @Fecha_Inicio, @Fecha_Fin, @Estado);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Usuario]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Usuario]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -942,7 +1185,7 @@ BEGIN
     VALUES (@Nombre, @Apellido, @Direccion, @Correo_Electronico, @Telefono, @Fecha_Contratacion, @Cargo, @ID_Area, @Estado);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Actividad]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Actividad]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -956,7 +1199,7 @@ BEGIN
     SELECT * FROM Actividad;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Area]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Area]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -969,7 +1212,7 @@ BEGIN
     SELECT * FROM Area;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Documento]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Documento]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -983,7 +1226,7 @@ BEGIN
     SELECT * FROM Documento;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Empresa]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Empresa]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -997,7 +1240,70 @@ BEGIN
     SELECT * FROM Empresa;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Solicitud_Tiempo_Libre]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_items_proyecto]    Script Date: 5/05/2025 09:54:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_Listar_items_proyecto]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        ID_ITEMS,
+        ID_PROYECTO,
+        descripcion,
+        estado,
+        fecha_creacion
+    FROM items_proyecto;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Listar_items_proyecto_por_id]    Script Date: 5/05/2025 09:54:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_Listar_items_proyecto_por_id]
+    @ID_PROYECTO INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        ID_ITEMS,
+        ID_PROYECTO,
+        descripcion,
+        estado,
+        fecha_creacion
+    FROM items_proyecto
+    WHERE ID_PROYECTO = @ID_PROYECTO;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Proyecto]    Script Date: 5/05/2025 09:54:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_Listar_Proyecto]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        id_proyecto,
+        titulo,
+        descripcion,
+        fecha_limite,
+        estado,
+        id_usuario,
+        progreso,
+        fecha_creacion,
+        fecha_actualizacion
+    FROM Proyecto;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Solicitud_Tiempo_Libre]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1011,7 +1317,7 @@ BEGIN
     SELECT * FROM Solicitud_Tiempo_Libre;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Usuario]    Script Date: 30/04/2025 09:11:12 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Usuario]    Script Date: 5/05/2025 09:54:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
