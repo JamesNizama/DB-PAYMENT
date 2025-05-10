@@ -2,7 +2,7 @@ CREATE DATABASE [PAYMENTS_DB]
 GO
 USE [PAYMENTS_DB]
 GO
-/****** Object:  Table [dbo].[Usuario]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Table [dbo].[Usuario]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -18,13 +18,15 @@ CREATE TABLE [dbo].[Usuario](
 	[Cargo] [varchar](100) NULL,
 	[ID_Area] [tinyint] NULL,
 	[Estado] [bit] NULL,
+	[user] [varchar](50) NULL,
+	[password] [varchar](50) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[ID_Usuario] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Actividad]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Table [dbo].[Actividad]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -43,7 +45,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[Vista_Actividades_Por_Usuario]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  View [dbo].[Vista_Actividades_Por_Usuario]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -68,7 +70,7 @@ FROM
 JOIN 
     Actividad A ON U.ID_Usuario = A.ID_Usuario;
 GO
-/****** Object:  View [dbo].[Vista_Actividades_Pendientes]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  View [dbo].[Vista_Actividades_Pendientes]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -92,7 +94,7 @@ JOIN
 WHERE 
     A.Estado IN ('Programada', 'Progreso');
 GO
-/****** Object:  Table [dbo].[Solicitud_Tiempo_Libre]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Table [dbo].[Solicitud_Tiempo_Libre]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -110,7 +112,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[Vista_Solicitudes_Tiempo_Libre]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  View [dbo].[Vista_Solicitudes_Tiempo_Libre]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -131,7 +133,7 @@ FROM
 JOIN 
     Usuario U ON S.ID_Usuario = U.ID_Usuario;
 GO
-/****** Object:  View [dbo].[Vista_Actividades_Completadas]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  View [dbo].[Vista_Actividades_Completadas]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -154,7 +156,7 @@ JOIN
 WHERE 
     A.Estado = 'Completada';
 GO
-/****** Object:  Table [dbo].[Area]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Table [dbo].[Area]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -171,7 +173,7 @@ CREATE TABLE [dbo].[Area](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[Vista_Actividades_Por_Area]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  View [dbo].[Vista_Actividades_Por_Area]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -195,7 +197,7 @@ JOIN
 JOIN 
     Area Ar ON U.ID_Area = Ar.ID_Area;
 GO
-/****** Object:  Table [dbo].[Documento]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Table [dbo].[Documento]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -214,7 +216,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Empresa]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Table [dbo].[Empresa]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -231,7 +233,7 @@ CREATE TABLE [dbo].[Empresa](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[items_proyecto]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Table [dbo].[items_proyecto]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -248,7 +250,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Proyecto]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Table [dbo].[Proyecto]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -269,7 +271,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Rol]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Table [dbo].[Rol]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -285,7 +287,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Rol_Usuario]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Table [dbo].[Rol_Usuario]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -412,11 +414,17 @@ INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado
 GO
 INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (20, 5, N'Pruebas y Lanzamiento', N'No Iniciado', CAST(N'2025-05-02T12:35:38.353' AS DateTime))
 GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (21, 6, N'Revisar Documentos', N'Completado', CAST(N'2025-05-08T19:34:27.747' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (22, 6, N'Listar Documentos', N'Completado', CAST(N'2025-05-08T19:34:27.753' AS DateTime))
+GO
+INSERT [dbo].[items_proyecto] ([ID_ITEMS], [ID_PROYECTO], [descripcion], [estado], [fecha_creacion]) VALUES (23, 6, N'Finalizar Documentos', N'Completado', CAST(N'2025-05-08T19:34:27.763' AS DateTime))
+GO
 SET IDENTITY_INSERT [dbo].[items_proyecto] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Proyecto] ON 
 GO
-INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (1, N'Implementación de Sistema de Gestión', N'Proyecto para implementar un sistema integral de gestión empresarial.', CAST(N'2025-09-30' AS Date), N'No Iniciado', 1, 0, CAST(N'2025-05-02T10:09:24.420' AS DateTime), CAST(N'2025-05-08T12:35:32.537' AS DateTime))
+INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (1, N'Implementación de Sistema de Gestión', N'Proyecto para implementar un sistema integral de gestión empresarial.', CAST(N'2025-09-30' AS Date), N'No Iniciado', 1, 0, CAST(N'2025-05-02T10:09:24.420' AS DateTime), CAST(N'2025-05-08T21:54:30.323' AS DateTime))
 GO
 INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (2, N'Desarrollo de Aplicación Web', N'Proyecto para desarrollar una aplicación web para la gestión de clientes.', CAST(N'2025-10-15' AS Date), N'No Iniciado', 2, 0, CAST(N'2025-05-02T11:55:50.480' AS DateTime), CAST(N'2025-05-02T11:55:50.480' AS DateTime))
 GO
@@ -425,6 +433,8 @@ GO
 INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (4, N'Automatización de Procesos Empresariales', N'Proyecto para automatizar los procesos internos de la empresa utilizando RPA (Robotic Process Automation).', CAST(N'2025-11-15' AS Date), N'No Iniciado', 4, 0, CAST(N'2025-05-02T12:35:22.150' AS DateTime), CAST(N'2025-05-08T12:34:40.403' AS DateTime))
 GO
 INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (5, N'Desarrollo de Plataforma de E-commerce', N'Proyecto para crear una plataforma de comercio electrónico para ventas de productos en línea.', CAST(N'2026-01-10' AS Date), N'No Iniciado', 5, 0, CAST(N'2025-05-02T12:35:32.740' AS DateTime), CAST(N'2025-05-02T12:35:32.740' AS DateTime))
+GO
+INSERT [dbo].[Proyecto] ([ID_PROYECTO], [titulo], [descripcion], [fecha_limite], [estado], [ID_Usuario], [progreso], [fecha_creacion], [fecha_actualizacion]) VALUES (6, N'Inspecion', N'Datos varios', CAST(N'2025-05-25' AS Date), N'No Iniciado', 20, 100, CAST(N'2025-05-08T19:34:27.687' AS DateTime), CAST(N'2025-05-08T21:54:38.210' AS DateTime))
 GO
 SET IDENTITY_INSERT [dbo].[Proyecto] OFF
 GO
@@ -454,57 +464,57 @@ SET IDENTITY_INSERT [dbo].[Solicitud_Tiempo_Libre] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Usuario] ON 
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (1, N'ANGIE LEONELA', N'BORJA MENESES', N'', N'', N'', CAST(N'2024-04-01' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (1, N'ANGIE LEONELA', N'BORJA MENESES', N'', N'', N'', CAST(N'2024-04-01' AS Date), N'', 1, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (2, N'JHON ANDERSON', N'SIESQUEN GARCIA', N'', N'', N'', CAST(N'2024-04-08' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (2, N'JHON ANDERSON', N'SIESQUEN GARCIA', N'', N'', N'', CAST(N'2024-04-08' AS Date), N'', 1, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (3, N'CESAR AUGUSTO', N'VELORIO TRUCIOS', N'', N'', N'', CAST(N'2023-11-01' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (3, N'CESAR AUGUSTO', N'VELORIO TRUCIOS', N'', N'', N'', CAST(N'2023-11-01' AS Date), N'', 1, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (4, N'CELESTINO', N'CHAUCA KIMBERLY', N'', N'', N'', CAST(N'2024-04-08' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (4, N'CELESTINO', N'CHAUCA KIMBERLY', N'', N'', N'', CAST(N'2024-04-08' AS Date), N'', 1, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (5, N'HAROLD JEFERSON', N'SOTOMAYOR SALAZAR', N'', N'', N'', CAST(N'2024-09-01' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (5, N'HAROLD JEFERSON', N'SOTOMAYOR SALAZAR', N'', N'', N'', CAST(N'2024-09-01' AS Date), N'', 1, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (6, N'EMILETH CAROLINA', N'CASTIBLANCO CAICEDO', N'', N'', N'', CAST(N'2024-09-01' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (6, N'EMILETH CAROLINA', N'CASTIBLANCO CAICEDO', N'', N'', N'', CAST(N'2024-09-01' AS Date), N'', 1, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (7, N'KATIA PAOLA', N'VERGARA VERGARA', N'', N'', N'', CAST(N'2024-11-01' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (7, N'KATIA PAOLA', N'VERGARA VERGARA', N'', N'', N'', CAST(N'2024-11-01' AS Date), N'', 1, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (8, N'SHEILA', N'ARIZA ROBLES', N'', N'', N'', CAST(N'2025-04-01' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (8, N'SHEILA', N'ARIZA ROBLES', N'', N'', N'', CAST(N'2025-04-01' AS Date), N'', 1, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (9, N'KATHERINE ALEXANDRA', N'HORNA CARRANZA', N'', N'', N'', CAST(N'2024-03-01' AS Date), N'', 2, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (9, N'KATHERINE ALEXANDRA', N'HORNA CARRANZA', N'', N'', N'', CAST(N'2024-03-01' AS Date), N'', 2, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (10, N'LUCIA YSABEL', N'CHAVEZ RIVERA', N'', N'', N'', CAST(N'2024-03-01' AS Date), N'', 2, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (10, N'LUCIA YSABEL', N'CHAVEZ RIVERA', N'', N'', N'', CAST(N'2024-03-01' AS Date), N'', 2, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (11, N'KENLLY', N'FASABI AMASIFUEN', N'', N'', N'', CAST(N'2024-05-01' AS Date), N'', 2, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (11, N'KENLLY', N'FASABI AMASIFUEN', N'', N'', N'', CAST(N'2024-05-01' AS Date), N'', 2, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (12, N'EMMA JOHANA', N'SANCHEZ SANGAMA', N'', N'', N'', CAST(N'2024-06-01' AS Date), N'', 2, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (12, N'EMMA JOHANA', N'SANCHEZ SANGAMA', N'', N'', N'', CAST(N'2024-06-01' AS Date), N'', 2, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (13, N'ALEX', N'CAMPOS RUIZ', N'', N'', N'', CAST(N'2024-06-01' AS Date), N'', 2, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (13, N'ALEX', N'CAMPOS RUIZ', N'', N'', N'', CAST(N'2024-06-01' AS Date), N'', 2, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (14, N'MARYAN DIHAMELIZ', N'HERNANDEZ ARAUJO', N'', N'', N'', CAST(N'2021-02-01' AS Date), N'', 2, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (14, N'MARYAN DIHAMELIZ', N'HERNANDEZ ARAUJO', N'', N'', N'', CAST(N'2021-02-01' AS Date), N'', 2, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (15, N'ROSA ASUNCIÓN', N'CHAUCA RUIZ', N'', N'', N'', CAST(N'2021-10-01' AS Date), N'', 2, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (15, N'ROSA ASUNCIÓN', N'CHAUCA RUIZ', N'', N'', N'', CAST(N'2021-10-01' AS Date), N'', 2, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (16, N'YEFRI ANDRUAR', N'CELESTINO CHAUCA', N'', N'', N'', CAST(N'2020-11-01' AS Date), N'', 2, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (16, N'YEFRI ANDRUAR', N'CELESTINO CHAUCA', N'', N'', N'', CAST(N'2020-11-01' AS Date), N'', 2, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (17, N'LUCIANO', N'SOLANO GAMONAL', N'', N'', N'', CAST(N'2022-06-01' AS Date), N'', 2, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (17, N'LUCIANO', N'SOLANO GAMONAL', N'', N'', N'', CAST(N'2022-06-01' AS Date), N'', 2, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (18, N'ROXANA', N'SANCHEZ IRENE', N'', N'', N'', CAST(N'2022-06-01' AS Date), N'', 2, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (18, N'ROXANA', N'SANCHEZ IRENE', N'', N'', N'', CAST(N'2022-06-01' AS Date), N'', 2, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (19, N'ALEXIA LUCIA', N'LOPEZ INCA', N'', N'', N'', CAST(N'2024-12-01' AS Date), N'', 3, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (19, N'ALEXIA LUCIA', N'LOPEZ INCA', N'', N'', N'', CAST(N'2024-12-01' AS Date), N'', 3, 1, NULL, NULL)
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (20, N'JAIME', N'NIZAMA CARRAZA', N'', N'', N'', CAST(N'2025-04-07' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (20, N'JAIME', N'NIZAMA CARRAZA', N'', N'', N'', CAST(N'2025-04-07' AS Date), N'', 1, 1, N'Jnizama', N'123')
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (21, N'JESUS CHRTOFER', N'ZELADA ORTIZ', N'', N'', N'', CAST(N'2025-04-08' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (21, N'JESUS CHRTOFER', N'ZELADA ORTIZ', N'', N'', N'', CAST(N'2025-04-08' AS Date), N'', 1, 1, N'Jzelada', N'123')
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (22, N'FABIAN DEL PIERO', N'DOLORIER AÑAZCO', N'', N'', N'', CAST(N'2025-04-09' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (22, N'FABIAN DEL PIERO', N'DOLORIER AÑAZCO', N'', N'', N'', CAST(N'2025-04-09' AS Date), N'', 1, 1, N'Fdolorier', N'123')
 GO
-INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado]) VALUES (23, N'SEBASTIAN MARTIN', N'DONGO QUEZADA', N'', N'', N'', CAST(N'2025-04-10' AS Date), N'', 1, 1)
+INSERT [dbo].[Usuario] ([ID_Usuario], [Nombre], [Apellido], [Direccion], [Correo_Electronico], [Telefono], [Fecha_Contratacion], [Cargo], [ID_Area], [Estado], [user], [password]) VALUES (23, N'SEBASTIAN MARTIN', N'DONGO QUEZADA', N'', N'', N'', CAST(N'2025-04-10' AS Date), N'', 1, 1, N'Sdongo', N'123')
 GO
 SET IDENTITY_INSERT [dbo].[Usuario] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UQ__Empresa__CAF3326B3160D2C2]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  Index [UQ__Empresa__CAF3326B3160D2C2]    Script Date: 10/05/2025 02:24:28 ******/
 ALTER TABLE [dbo].[Empresa] ADD  CONSTRAINT [UQ__Empresa__CAF3326B3160D2C2] UNIQUE NONCLUSTERED 
 (
 	[RUC] ASC
@@ -576,7 +586,7 @@ ALTER TABLE [dbo].[Proyecto] CHECK CONSTRAINT [CK_Proyecto_Estado]
 GO
 ALTER TABLE [dbo].[Solicitud_Tiempo_Libre]  WITH CHECK ADD CHECK  (([Estado]='Rechazada' OR [Estado]='Aprobada' OR [Estado]='Pendiente'))
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Actividad_Por_ID]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Actividad_Por_ID]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -589,7 +599,7 @@ BEGIN
     WHERE ID_Actividad = @ID_Actividad;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Actividad_Por_Titulo]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Actividad_Por_Titulo]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -603,7 +613,7 @@ BEGIN
     WHERE Titulo LIKE '%' + @Titulo + '%';
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Area_Por_ID]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Area_Por_ID]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -617,7 +627,7 @@ BEGIN
     WHERE ID_Area = @ID_Area;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Area_Por_Nombre]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Area_Por_Nombre]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -631,7 +641,7 @@ BEGIN
     WHERE Nombre LIKE '%' + @Nombre + '%';
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Documento_Por_ID]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Documento_Por_ID]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -644,7 +654,7 @@ BEGIN
     WHERE ID_Documento = @ID_Documento;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Documento_Por_Titulo]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Documento_Por_Titulo]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -658,7 +668,7 @@ BEGIN
     WHERE Titulo LIKE '%' + @Titulo + '%';
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Empresa_Por_ID]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Empresa_Por_ID]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -671,7 +681,7 @@ BEGIN
     WHERE ID_Empresa = @ID_Empresa;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Empresa_Por_Nombre]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Empresa_Por_Nombre]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -685,7 +695,7 @@ BEGIN
     WHERE Nombre LIKE '%' + @Nombre + '%';
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Usuario_Por_ID]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Usuario_Por_ID]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -699,7 +709,7 @@ BEGIN
     WHERE ID_Usuario = @ID_Usuario;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[Listar_Usuario_Por_Nombre]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[Listar_Usuario_Por_Nombre]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -713,7 +723,7 @@ BEGIN
     WHERE Nombre LIKE '%' + @Nombre + '%';
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[ListarProyectosConItems]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[ListarProyectosConItems]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -743,7 +753,7 @@ BEGIN
         p.id_proyecto, i.ID_ITEMS;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Actividad]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Actividad]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -765,7 +775,7 @@ BEGIN
     WHERE ID_Actividad = @ID_Actividad;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Area]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Area]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -784,7 +794,7 @@ BEGIN
     WHERE ID_Area = @ID_Area;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Documento]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Documento]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -803,7 +813,7 @@ BEGIN
     WHERE ID_Documento = @ID_Documento;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Empresa]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Empresa]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -826,7 +836,7 @@ BEGIN
     WHERE ID_Empresa = @ID_Empresa;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Estado_ItemsProyecto]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Estado_ItemsProyecto]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -842,7 +852,7 @@ BEGIN
     WHERE ID_PROYECTO = @ID_PROYECTO AND ID_ITEMS = @ID_ITEMS;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Proyecto]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Proyecto]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -869,7 +879,7 @@ BEGIN
     WHERE id_proyecto = @id_proyecto;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Solicitud_Tiempo_Libre]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Solicitud_Tiempo_Libre]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -890,7 +900,7 @@ BEGIN
     WHERE ID_Solicitud = @ID_Solicitud;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Usuario]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Actualizar_Usuario]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -916,7 +926,7 @@ BEGIN
     WHERE ID_Usuario = @ID_Usuario;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Actividad]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Actividad]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -931,7 +941,7 @@ BEGIN
     WHERE ID_Actividad = @ID_Actividad;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Area]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Area]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -946,7 +956,7 @@ BEGIN
     WHERE ID_Area = @ID_Area;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Documento]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Documento]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -961,7 +971,7 @@ BEGIN
     WHERE ID_Documento = @ID_Documento;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Empresa]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Empresa]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -976,7 +986,7 @@ BEGIN
     WHERE ID_Empresa = @ID_Empresa;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_ItemsProyecto]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_ItemsProyecto]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -989,7 +999,7 @@ BEGIN
     WHERE ID_PROYECTO = @ID_PROYECTO;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Solicitud_Tiempo_Libre]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Solicitud_Tiempo_Libre]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1004,7 +1014,7 @@ BEGIN
     WHERE ID_Solicitud = @ID_Solicitud;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Usuario]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Eliminar_Usuario]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1019,7 +1029,7 @@ BEGIN
     WHERE ID_Usuario = @ID_Usuario;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Actividad]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Actividad]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1039,7 +1049,7 @@ BEGIN
     VALUES (@ID_Usuario, @Titulo, @Descripcion, @Fecha_Inicio, @Fecha_Fin, @Estado);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Area]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Area]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1057,7 +1067,7 @@ BEGIN
     VALUES (@Nombre, @Descripcion, @ID_Empresa, @Estado);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Documento]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Documento]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1075,7 +1085,7 @@ BEGIN
     VALUES (@Titulo, @Descripcion, @Tipo, @Autor);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Empresa]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Empresa]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1092,7 +1102,7 @@ BEGIN
     VALUES (@Nombre, @RUC, @Descripcion, @Estado);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_ItemProyecto]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_ItemProyecto]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1110,7 +1120,7 @@ BEGIN
     SELECT SCOPE_IDENTITY() AS id_item;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Proyecto]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Proyecto]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1133,7 +1143,7 @@ BEGIN
     SELECT SCOPE_IDENTITY() AS id_proyecto;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Solicitud_Tiempo_Libre]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Solicitud_Tiempo_Libre]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1152,7 +1162,7 @@ BEGIN
     VALUES (@ID_Usuario, @Tipo_Tiempo_Libre, @Fecha_Inicio, @Fecha_Fin, @Estado);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Insertar_Usuario]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Insertar_Usuario]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1175,7 +1185,7 @@ BEGIN
     VALUES (@Nombre, @Apellido, @Direccion, @Correo_Electronico, @Telefono, @Fecha_Contratacion, @Cargo, @ID_Area, @Estado);
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Actividad]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Actividad]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1189,7 +1199,7 @@ BEGIN
     SELECT * FROM Actividad;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Area]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Area]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1202,7 +1212,7 @@ BEGIN
     SELECT * FROM Area;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Documento]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Documento]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1216,7 +1226,7 @@ BEGIN
     SELECT * FROM Documento;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Empresa]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Empresa]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1230,7 +1240,7 @@ BEGIN
     SELECT * FROM Empresa;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_items_proyecto]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_items_proyecto]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1249,7 +1259,7 @@ BEGIN
     FROM items_proyecto;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_items_proyecto_por_id]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_items_proyecto_por_id]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1270,7 +1280,7 @@ BEGIN
     WHERE ID_PROYECTO = @ID_PROYECTO;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Proyecto]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Proyecto]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1293,7 +1303,7 @@ BEGIN
     FROM Proyecto;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Solicitud_Tiempo_Libre]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Solicitud_Tiempo_Libre]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1307,7 +1317,7 @@ BEGIN
     SELECT * FROM Solicitud_Tiempo_Libre;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Listar_Usuario]    Script Date: 8/05/2025 12:42:18 ******/
+/****** Object:  StoredProcedure [dbo].[sp_Listar_Usuario]    Script Date: 10/05/2025 02:24:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
